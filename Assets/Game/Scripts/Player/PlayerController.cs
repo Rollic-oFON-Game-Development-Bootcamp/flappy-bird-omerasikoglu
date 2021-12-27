@@ -12,8 +12,8 @@ namespace SlappyBird.Player
     {
         [SerializeField] private PlayerControllerSettings playerSettings;   //RW
         [SerializeField] private PlayerInputData inputData;                 //readonly
+        [SerializeField] private Animator animator;
 
-        
         public List<GameObject> asd;
 
 
@@ -30,15 +30,26 @@ namespace SlappyBird.Player
         
         private void Update()
         {
-            if (inputData.isClickingRight || inputData.isClickingLeft)
+            if (inputData.isClickingRightDown )
             {
-                Jump();
+                StartJump();
+            } 
+            
+            if (inputData.isClickingLeftDown )
+            {
+                EndJumping();
             }
         }
         [Button]
-        private void Jump()
+        public void StartJump()
         {
+            animator.SetBool("isJumping",true);
+        }
 
+        [Button]
+        public void EndJumping()
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 

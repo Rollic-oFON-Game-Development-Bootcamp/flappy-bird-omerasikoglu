@@ -14,5 +14,11 @@ namespace SlappyBird.PlayerInput
         public bool isClickingRight;
         public bool isClickingLeft;
 
+        public bool isClickingRightUp;
+        public bool isClickingLeftUp;
+
+        public bool isClickingRightDown;
+        public bool isClickingLeftDown;
+
     } 
 }

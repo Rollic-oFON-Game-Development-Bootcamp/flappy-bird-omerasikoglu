@@ -18,7 +18,16 @@ namespace SlappyBird.PlayerInput
         private void ReceiveClickInput()
         {
             inputData.isClickingRight = Input.GetMouseButton(1);
+            inputData.isClickingRightUp = Input.GetMouseButtonUp(1);
+            inputData.isClickingRightDown = Input.GetMouseButtonDown(1);
+
             inputData.isClickingLeft = Input.GetMouseButton(0);
+            inputData.isClickingLeftUp = Input.GetMouseButtonUp(0);
+            inputData.isClickingLeftDown = Input.GetMouseButtonDown(0);
+
+
+
+
         }
 
         private void ReceiveAxisInputs()
