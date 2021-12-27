@@ -7,33 +7,40 @@ namespace SlappyBird.PlayerInput
 {
     public class PlayerInputManager : MonoBehaviour
     {
-        [SerializeField] private PlayerInputData inputData;
+        public float HorizontalInput { get; private set; }
+        public float VerticalInput { get; private set; }
+
+        public static bool IsClickingDown { get; private set; }
+        public static bool IsClickingLeftDown { get; private set; }
+        public static bool IsClickingRightDown { get; private set; }
+        public static bool IsClickingLeftUp { get; private set; }
+        public static bool IsClickingRightUp { get; private set; }
+        public static bool IsClickingLeft { get; private set; }
+        public static bool IsClickingRight { get; private set; }
 
         private void Update()
         {
             ReceiveAxisInputs();
-            ReceiveClickInput();
+            ReceiveClickInputs();
         }
 
-        private void ReceiveClickInput()
+        private void ReceiveClickInputs()
         {
-            inputData.isClickingRight = Input.GetMouseButton(1);
-            inputData.isClickingRightUp = Input.GetMouseButtonUp(1);
-            inputData.isClickingRightDown = Input.GetMouseButtonDown(1);
+            IsClickingRight = Input.GetMouseButton(1);
+            IsClickingRightUp = Input.GetMouseButtonUp(1);
+            IsClickingRightDown = Input.GetMouseButtonDown(1);
 
-            inputData.isClickingLeft = Input.GetMouseButton(0);
-            inputData.isClickingLeftUp = Input.GetMouseButtonUp(0);
-            inputData.isClickingLeftDown = Input.GetMouseButtonDown(0);
+            IsClickingLeft = Input.GetMouseButton(0);
+            IsClickingLeftUp = Input.GetMouseButtonUp(0);
+            IsClickingLeftDown = Input.GetMouseButtonDown(0);
 
-
-
-
+            IsClickingDown = IsClickingLeftDown || IsClickingRightDown;
         }
 
         private void ReceiveAxisInputs()
         {
-            inputData.horizontalInput = Input.GetAxisRaw(StringData.HORIZONTAL);
-            inputData.verticalInput = Input.GetAxisRaw(StringData.VERTICAL);
+            HorizontalInput = Input.GetAxisRaw(StringData.HORIZONTAL);
+            VerticalInput = Input.GetAxisRaw(StringData.VERTICAL);
         }
     }
 }

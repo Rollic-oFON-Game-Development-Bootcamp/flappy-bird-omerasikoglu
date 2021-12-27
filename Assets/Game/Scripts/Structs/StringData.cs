@@ -19,5 +19,8 @@ public struct StringData
     //SceneManagement
     public const string CURRENTLEVEL = "currentLevel";
 
+    //Animator
+    public const string PRESSEDJUMP = "isPressedJump";
+
 
 }

@@ -5,51 +5,36 @@ using SlappyBird.PlayerInput;
 using SlappyBird.UI;
 using NaughtyAttributes;
 
-
 namespace SlappyBird.Player
 {
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerControllerSettings playerSettings;   //RW
-        [SerializeField] private PlayerInputData inputData;                 //readonly
         [SerializeField] private Animator animator;
 
-        public List<GameObject> asd;
-
-
-        private void Awake()
-        {
-
-        }
-
-        private void Start()
-        {
-           
-        }
-
-        
         private void Update()
         {
-            if (inputData.isClickingRightDown )
-            {
-                StartJump();
-            } 
-            
-            if (inputData.isClickingLeftDown )
-            {
-                EndJumping();
-            }
+            Inputs();
         }
-        [Button]
-        public void StartJump()
+
+        private void Inputs()
         {
-            animator.SetBool("isJumping",true);
+            if (PlayerInputManager.IsClickingDown)
+            {
+                JumpStarted();
+            }
         }
 
         [Button]
-        public void EndJumping()
+        private void JumpStarted()
         {
-            animator.SetBool("isJumping", false);
+            animator.SetBool(StringData.PRESSEDJUMP, true);
+        }
+
+        [Button]
+        private void EndJumping()
+        {
+            animator.SetBool(StringData.PRESSEDJUMP, false);
         }
     }
 
