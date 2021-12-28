@@ -7,8 +7,8 @@ namespace SlappyBird.Player
     [CreateAssetMenu(menuName = "Scriptable Objects/Player/PlayerControllerSettings")]
     public class PlayerControllerSettings : ScriptableObject
     {
-        [SerializeField] private float playerMovementSpeed;
+        [SerializeField] private float movementSpeed;
 
-        public float PlayerSpeed => playerMovementSpeed;
+        public float MovementSpeed => movementSpeed;
     }
 }

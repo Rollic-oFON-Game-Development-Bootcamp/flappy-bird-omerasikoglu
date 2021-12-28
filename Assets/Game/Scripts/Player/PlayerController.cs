@@ -4,6 +4,7 @@ using UnityEngine;
 using SlappyBird.PlayerInput;
 using SlappyBird.UI;
 using NaughtyAttributes;
+using System;
 
 namespace SlappyBird.Player
 {
@@ -11,10 +12,17 @@ namespace SlappyBird.Player
     {
         [SerializeField] private PlayerControllerSettings playerSettings;   //RW
         [SerializeField] private Animator animator;
+        [SerializeField] private Rigidbody2D rb;
 
         private void Update()
         {
             Inputs();
+            Move();
+        }
+
+        private void Move()
+        {
+            rb.velocity = Vector2.right * Time.deltaTime * playerSettings.MovementSpeed;
         }
 
         private void Inputs()

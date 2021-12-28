@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SlappyBird
 {
-    public class EffectManager : Singleton<EffectManager>
+    public class ParticleManager : Singleton<ParticleManager>
     {
         [SerializeField] private ParticleSystem hitParticles;
 

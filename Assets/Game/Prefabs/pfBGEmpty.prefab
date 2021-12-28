@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2235852750714155606}
   - component: {fileID: 2782547250989243323}
   m_Layer: 0
-  m_Name: pfBackground
+  m_Name: pfBGEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
