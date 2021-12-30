@@ -11,19 +11,9 @@ namespace SlappyBird.WorldSpace
         [SerializeField] List<Rigidbody2D> pipePieceList;
         //Vector2 poss;
         [SerializeField] private float magnitude = 1f;
-        private void OnTriggerEnter2D(Collider other)
-        {
-            //PlayerController player = other.GetComponent<PlayerController>();
-            if (other.CompareTag("Player"))
-            {
-                Explode();
-                Debug.Log("triggered");
-                //poss = other.transform.position;
-                //ParticleManager.Instance.PlayHitParticles(other.transform.position);
-            }
-        }
+
         [Button("Exlode")]
-        private void Explode()
+        public void Explode()
         {
             foreach (var pipe in pipePieceList)
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-namespace SlappyBird.BackgroundCreater
+namespace SlappyBird.WorldSpace
 {
     public class BackgroundCreator : MonoBehaviour
     {

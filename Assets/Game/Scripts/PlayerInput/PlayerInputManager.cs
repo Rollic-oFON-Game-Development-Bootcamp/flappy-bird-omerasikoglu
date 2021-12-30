@@ -17,6 +17,7 @@ namespace SlappyBird.PlayerInput
         public static bool IsClickingRightUp { get; private set; }
         public static bool IsClickingLeft { get; private set; }
         public static bool IsClickingRight { get; private set; }
+        public static bool IsClickDownAnything { get; private set; }
 
         private void Update()
         {
@@ -34,6 +35,7 @@ namespace SlappyBird.PlayerInput
             IsClickingLeftUp = Input.GetMouseButtonUp(0);
             IsClickingLeftDown = Input.GetMouseButtonDown(0);
 
+            IsClickDownAnything = Input.anyKeyDown;
             IsClickingDown = IsClickingLeftDown || IsClickingRightDown;
         }
 

@@ -2,27 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 namespace SlappyBird.Level
 {
-    public class LevelManager : MonoBehaviour
+    public class LevelManager : Singleton<LevelManager>
     {
-        private static LevelManager instance;
-        public static LevelManager Instance => instance ??= new LevelManager();
 
         private int currentLevel = 1;
 
-        private void Awake()
+        protected override void Awake()
         {
-            //if (PlayerPrefs.GetInt(StringData.CURRENTLEVEL) != null)
-            //{
-            //    currentLevel = PlayerPrefs.GetInt(StringData.CURRENTLEVEL);
-            //}
-            //else
-            //{
-
-            //}
-
             currentLevel = PlayerPrefs.GetInt(StringData.CURRENTLEVEL);
             PlayerPrefs.SetInt(StringData.CURRENTLEVEL, currentLevel);
         }
@@ -32,5 +22,11 @@ namespace SlappyBird.Level
         {
             PlayerPrefs.SetInt(StringData.CURRENTLEVEL, 1);
         }
+        public void LoadNextScene()
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt(StringData.CURRENTLEVEL));
+        }
+
+
     }
 }

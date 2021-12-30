@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6e9a508e08ba947bbc5ef6ab7c7c4f, type: 3}
   m_Name: PlayerSettings_Default
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  movementSpeed: 0.5
+  jumpHeightY: 5
+  maxSpeed: 3

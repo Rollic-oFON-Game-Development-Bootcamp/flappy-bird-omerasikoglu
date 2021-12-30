@@ -4,7 +4,7 @@ using UnityEngine;
 using SlappyBird.PlayerInput;
 using SlappyBird.UI;
 using NaughtyAttributes;
-using System;
+using SlappyBird.WorldSpace;
 
 namespace SlappyBird.Player
 {
@@ -14,35 +14,75 @@ namespace SlappyBird.Player
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody2D rb;
 
+
+        private bool canMove = false;
+
+
+        private void Awake()
+        {
+            Time.timeScale = 0;
+        }
+
         private void Update()
         {
-            Inputs();
+            FirstMove();
+            CheckInputs();
             Move();
+        }
+
+        private void FirstMove()
+        {
+            if (!canMove && PlayerInputManager.IsClickDownAnything)
+            {
+                canMove = !canMove;
+                CheckTimeScale();
+                UIManager.Instance.SetDisactiveTapToStartUI();
+            }
         }
 
         private void Move()
         {
-            rb.velocity = Vector2.right * Time.deltaTime * playerSettings.MovementSpeed;
-        }
-
-        private void Inputs()
-        {
-            if (PlayerInputManager.IsClickingDown)
+            if (canMove && rb.velocity.x < playerSettings.MaxSpeed)
             {
-                JumpStarted();
+                //3f'e kadar hızlansın sonra hızı sabit kalsın
+                rb.velocity += Vector2.right * playerSettings.MovementSpeed * Time.deltaTime;
             }
         }
 
-        [Button]
-        private void JumpStarted()
+        private void CheckInputs()
         {
-            animator.SetBool(StringData.PRESSEDJUMP, true);
+            if (PlayerInputManager.IsClickingDown)
+            {
+                JumpPressed();
+            }
+
         }
 
         [Button]
-        private void EndJumping()
+        private void JumpPressed()
+        {
+            animator.SetBool(StringData.PRESSEDJUMP, true);
+            rb.velocity = new Vector2(rb.velocity.x, playerSettings.JumpHeightY);
+
+        }
+
+        [Button]
+        private void JumpPressEnded()
         {
             animator.SetBool(StringData.PRESSEDJUMP, false);
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Pipe pipe = collision.GetComponent<Pipe>();
+            if (pipe != null)
+            {
+                pipe.Explode();
+                //UIManager.Instance.UpdateScore(1);
+            }
+        }
+        private void CheckTimeScale()
+        {
+            Time.timeScale = canMove ? 1f : 0f;
         }
     }
 

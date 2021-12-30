@@ -191,6 +191,21 @@ TextureImporter:
   - first:
       213: -4521916765848550818
     second: PipeRear
+  - first:
+      213: -2495501701568473747
+    second: getReady
+  - first:
+      213: 3202350151548811433
+    second: fx1
+  - first:
+      213: -2108544524641541347
+    second: fx2
+  - first:
+      213: 5016361845061524068
+    second: whiteBird
+  - first:
+      213: 6017124844167423486
+    second: finger
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1622,6 +1637,111 @@ TextureImporter:
       bones: []
       spriteID: e52c6bbd8acee31c0800000000000000
       internalID: -4521916765848550818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: getReady
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 13
+        width: 87
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65d0a59c623e5dd0800000000000000
+      internalID: -2495501701568473747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx1
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 142
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a83c7dfe78017c20800000000000000
+      internalID: 3202350151548811433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fx2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 141
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1365a72de1fcb2e0800000000000000
+      internalID: -2108544524641541347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whiteBird
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 122
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46a17bf2582bd9540800000000000000
+      internalID: 5016361845061524068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: finger
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 85
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef5e6c96a2f118350800000000000000
+      internalID: 6017124844167423486
       vertices: []
       indices: 
       edges: []
