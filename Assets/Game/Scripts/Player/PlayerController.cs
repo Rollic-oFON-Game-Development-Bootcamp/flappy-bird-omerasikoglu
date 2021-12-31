@@ -5,6 +5,7 @@ using SlappyBird.PlayerInput;
 using SlappyBird.UI;
 using NaughtyAttributes;
 using SlappyBird.WorldSpace;
+using UnityEngine.SceneManagement;
 
 namespace SlappyBird.Player
 {
@@ -14,34 +15,41 @@ namespace SlappyBird.Player
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody2D rb;
 
+        private const float maxYheight = 5.15f;
+        private const float minYheight = -5.5f;
 
         private bool canMove = false;
-
-
-        private void Awake()
-        {
-            Time.timeScale = 0;
-        }
+        private bool isDead = false;
 
         private void Update()
         {
-            FirstMove();
+            HandleHeightBoundaries();
             CheckInputs();
             Move();
-        }
+           
 
-        private void FirstMove()
+        }
+        private void HandleHeightBoundaries()
+        {
+            if (transform.position.y < minYheight)
+            {
+                isDead = true;
+                canMove = false;
+                UIManager.Instance.SetActiveGameOverUI();
+            }
+        }
+        private void Move()
         {
             if (!canMove && PlayerInputManager.IsClickDownAnything)
             {
+                //first move
                 canMove = !canMove;
-                CheckTimeScale();
-                UIManager.Instance.SetDisactiveTapToStartUI();
+                UIManager.Instance.SetDeactiveTapToStartUI();
+                if (isDead)
+                {
+                    SceneManager.LoadScene(0);
+                }
             }
-        }
-
-        private void Move()
-        {
             if (canMove && rb.velocity.x < playerSettings.MaxSpeed)
             {
                 //3f'e kadar hızlansın sonra hızı sabit kalsın
@@ -61,9 +69,12 @@ namespace SlappyBird.Player
         [Button]
         private void JumpPressed()
         {
-            animator.SetBool(StringData.PRESSEDJUMP, true);
-            rb.velocity = new Vector2(rb.velocity.x, playerSettings.JumpHeightY);
+            if (maxYheight > transform.position.y)
+            {
+                animator.SetBool(StringData.PRESSEDJUMP, true);
+                rb.velocity = new Vector2(rb.velocity.x, playerSettings.JumpHeightY);
 
+            }
         }
 
         [Button]
@@ -74,16 +85,23 @@ namespace SlappyBird.Player
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Pipe pipe = collision.GetComponent<Pipe>();
+
             if (pipe != null)
             {
                 pipe.Explode();
-                //UIManager.Instance.UpdateScore(1);
+                UIManager.Instance.UpdateScore(1);
+                SoundManager.Instance.PlaySound();
+            }
+            if (collision.CompareTag(StringData.GROUND))
+            {
+                UIManager.Instance.SetActiveGameOverUI();
+                SoundManager.Instance.PlayNooooo();
             }
         }
-        private void CheckTimeScale()
-        {
-            Time.timeScale = canMove ? 1f : 0f;
-        }
+
+
+
+
     }
 
 }

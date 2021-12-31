@@ -8,41 +8,64 @@ namespace SlappyBird.UI
     public class UIManager : MonoBehaviour
     {
         public static UIManager Instance { get; private set; }
-        private Transform youWinUI;
+
+        //private Transform youWinUI;
         private Transform tapToStartUI;
+        private Transform gameOverUI;
+        private Transform inGameUI;
 
         private TextMeshProUGUI textMesh;
+        private TextMeshProUGUI textMeshScore;
 
         private int currentScore = 0;
 
-        
+
 
         protected void Awake()
         {
             Instance = this;
 
-            youWinUI = transform.Find("YouWinUI");
-            tapToStartUI = transform.Find("TapToStartUI");
-            youWinUI.gameObject.SetActive(false);
-            tapToStartUI.gameObject.SetActive(true);
+            Init();
 
-            //UpdateScore();
+            SetActiveTapToStartUI();
+            UpdateScore();
         }
-        private void Update()
+
+        private void Init()
         {
-            
+            //youWinUI = transform.Find(StringData.YOUWIN_UI);
+            tapToStartUI = transform.Find(StringData.TAPTOSTART_UI);
+            gameOverUI = transform.Find(StringData.GAMEOVER_UI);
+            inGameUI = transform.Find(StringData.INGAME_UI);
+            textMesh = inGameUI.Find(StringData.BACKGROUND).Find(StringData.TEXT).GetComponent<TextMeshProUGUI>();
+            textMeshScore = gameOverUI.Find(StringData.BACKGROUND).Find(StringData.TEXT).GetComponent<TextMeshProUGUI>();
         }
+
         public void UpdateScore(int amount = 0)
         {
             currentScore += amount;
-            
+            textMesh.SetText(currentScore.ToString());
         }
 
-        public void SetDisactiveTapToStartUI()
+        public void SetDeactiveTapToStartUI()
         {
             tapToStartUI.gameObject.SetActive(false);
+            Time.timeScale = 1f;
         }
-
-       
+        public void SetActiveTapToStartUI()
+        {
+            tapToStartUI.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        public void SetActiveGameOverUI()
+        {
+            gameOverUI.gameObject.SetActive(true);
+            //Time.timeScale = 0f;
+            textMeshScore.SetText("(Total Score:" + currentScore + ")");
+        }
+        public void SetActiveInGameUI()
+        {
+            inGameUI.gameObject.SetActive(true);
+        }
     }
 }

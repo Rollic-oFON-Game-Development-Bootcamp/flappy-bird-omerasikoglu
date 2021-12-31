@@ -18,9 +18,11 @@ namespace SlappyBird.WorldSpace
             foreach (var pipe in pipePieceList)
             {
                 pipe.GetComponent<Rigidbody2D>().simulated = true;
+
                 //pipe.AddForceAtPosition(Vector2.right, poss);
                 //pipe.transform.Translate(GetRandomPos() * magnitude * Time.deltaTime);
                 pipe.GetComponent<Rigidbody2D>().velocity = GetRandomPos();
+                Destroy(pipe.gameObject,2f);
             }
         }
 
